@@ -20,6 +20,10 @@ $(document).ready(function(){
 
 })
 
+$(window).on('load', function() {
+  if (xgit) { xgit.begin() }
+})
+  
 $('body').on('promulgate', function() {
   
 })
