@@ -29,6 +29,7 @@ xgit = (function() {
    } }
  
  var receiveToken = function(data) {
+   console.log(data)
    var RE    = /access_token=(.*?)&/g
    var match = RE.exec(data)
    if (match) { set_token(match[1]); console.log('Token: ' + token) }
