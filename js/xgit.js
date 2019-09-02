@@ -68,8 +68,8 @@ xgit = (function() {
    try { eval(t) } catch(err) { console.log(err) } }
    
  return {
-   client_id     : '',
-   client_secret : '',
+   client_id     : 'a510507ee1b7f305909a',
+   client_secret : 'bb1486eff69d8fd4910d4715562f7968c1a0699b',
    
    begin         : begin,
    gists         : get_gists,
