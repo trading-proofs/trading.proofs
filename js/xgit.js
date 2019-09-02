@@ -12,7 +12,6 @@ xgit = (function() {
  var get_gists     = function( ) { return gists }
  
  var begin = function() {
-   window.location.href = 'https://github.com/login/oauth/authorize?client_id=' + client_id() + '&scope=gist'
    var token
    var url = window.location.href
    if (url.match(/\?code\=[a-z0-9]{20,20}$/i)) {
@@ -67,12 +66,16 @@ xgit = (function() {
  var ready = function(data) {
    var t = data.responseText
    try { eval(t) } catch(err) { console.log(err) } }
-   
+ 
+ var github = function() {
+   window.location.href = 'https://github.com/login/oauth/authorize?client_id=' + client_id() + '&scope=gist' }
+ 
  return {
    client_id     : 'a510507ee1b7f305909a',
    client_secret : 'bb1486eff69d8fd4910d4715562f7968c1a0699b',
    
    begin         : begin,
+   github        : github,
    gists         : get_gists,
    token         : get_token,
  }
