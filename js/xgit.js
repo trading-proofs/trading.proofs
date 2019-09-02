@@ -21,7 +21,7 @@ xgit = (function() {
          uri += '&client_secret=' + client_secret()
          uri += '&code=' + c
      $.ajax({
-       type: 'POST',
+       type: 'GET',
        url : uri,
        success: receiveToken,
      })
