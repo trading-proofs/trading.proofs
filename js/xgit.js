@@ -59,17 +59,13 @@ xgit = (function() {
    debugwr(list)
    window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
    set_gists(list)
+   debugwr(anchor)
    var modURL
    for (var i = 0; i < list.length; i++) {
      var n = list[i]
      var desc = n.description.toLowerCase()
      if (desc == anchor) {
-       var o = n.files
-       for (var k in o) {
-         var detail = o[k]
-             modURL = detail.raw_url || ''
-         break
-       }
+       debugwr(n)
        break
      }
    }
