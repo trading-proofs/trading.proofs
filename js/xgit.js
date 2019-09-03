@@ -27,13 +27,6 @@ xgit = (function() {
      $.ajax({
        type: 'POST',
        url : uri,
-       // headers: { // this headers section is necessary for CORS-anywhere
-         // 'x-requested-with': 'xhr' 
-       // },
-       // crossDomain: true,
-       // xhrFields: { // https://stackoverflow.com/a/42554319
-         // withCredentials: true
-       // },
        success: receiveToken,
      })
    } }
@@ -57,22 +50,38 @@ xgit = (function() {
 
  var loadGists = function(list) {
    debugwr(list)
-   window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
-   set_gists(list)
    debugwr(anchor)
+   window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
    var modURL
    for (var i = 0; i < list.length; i++) {
      var n = list[i]
      var desc = n.description.toLowerCase()
      if (desc == anchor) {
-       debugwr(n)
+       set_gists(n.files)
+       retrieve()
        break
      }
    }
-   if (modURL === undefined) { debugwr('No modURL found.'); return }
-   debugwr('modURL: ' + modURL)
-   $.ajax({url: modURL, complete: ready }) }
+   if (modURL === undefined) { debugwr('No modURL found.'); return } }
    
+ var retrieve = function() {
+   var out  = []
+   var list = get_gists()
+   for (var file in list) {
+     out.push(file.raw_url)
+   }
+   var p = $.when(1)
+   out.forEach( function(raw, index) {
+     p = p.then(function() {
+       return $.ajax({ url: raw })
+     }).then(function(data) {
+       console.log(data)
+     })
+   })
+   p.then(function() {
+     $(document).trigger('files-read')
+   }) }
+  
  var ready = function(data) {
    debugwr('Gist retrieved: ' + data)
    var t = data.responseText
