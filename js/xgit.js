@@ -26,6 +26,7 @@ xgit = (function() {
        type: 'POST',
        url : uri,
        crossDomain: true,
+       dataType: 'jsonp',
        // xhrFields: { // https://stackoverflow.com/a/42554319
          // withCredentials: true
        // },
