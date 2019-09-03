@@ -68,13 +68,11 @@ xgit = (function() {
    var out  = []
    var list = get_gists()
    for (var file in list) {
-     out.push(file.raw_url)
+     out.push(list[file].raw_url)
    }
-  console.log(out)
    var p = $.when(1)
    out.forEach( function(raw, index) {
      p = p.then(function() {
-       console.log(raw)
        return $.ajax({ url: raw })
      }).then(function(data) {
        console.log(data)
