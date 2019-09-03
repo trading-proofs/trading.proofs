@@ -16,7 +16,7 @@ xgit = (function() {
    var url = window.location.href
    if (url.match(/\?code\=[a-z0-9]{20,20}$/i)) {
      var c    = url.replace(/.*?\?code\=/,'')
-     var uri  = '' //'https://cors-anywhere.herokuapp.com/'
+     var uri  = 'https://cors-anywhere.herokuapp.com/'
          uri += 'https://github.com/login/oauth/access_token'
          uri += '?client_id=' + client_id() + '&'
          uri += 'client_secret=' + client_secret() + '&'
