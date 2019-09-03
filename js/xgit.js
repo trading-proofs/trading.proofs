@@ -2,7 +2,7 @@
 xgit = (function() {
  var client_id     = function() { return xgit.client_id }
  var client_secret = function() { return xgit.client_secret }
- var anchor        = 'trading.proof'
+ var anchor        = 'trading.proofs'
  var systemReady   = false
  var token         = ''
  var set_token     = function(t) { token = t }
