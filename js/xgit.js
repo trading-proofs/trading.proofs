@@ -10,6 +10,8 @@ xgit = (function() {
  var gists         = []
  var set_gists     = function(t) { gists = t }
  var get_gists     = function( ) { return gists }
+ var debug         = true
+ var debugwr       = function(m) { if (debug) { console.log(m) } }
  
  var begin = function() {
    var token
@@ -21,7 +23,7 @@ xgit = (function() {
          uri += '?client_id=' + client_id() + '&'
          uri += 'client_secret=' + client_secret() + '&'
          uri += 'code=' + c
-     console.log('Requesting access: ' + uri)
+     debugwr('Requesting access: ' + uri)
      $.ajax({
        type: 'POST',
        url : uri,
@@ -37,10 +39,10 @@ xgit = (function() {
    } }
  
  var receiveToken = function(data) {
-   console.log(data)
+   debugwr('Extracting token from response: ' + data)
    var RE    = /access_token=(.*?)&/g
    var match = RE.exec(data)
-   if (match) { set_token(match[1]); console.log('Token: ' + token); systemReady = true }
+   if (match) { set_token(match[1]); debugwr('Token: ' + token); systemReady = true }
    if (systemReady) { requestGists() } }
    
  var requestGists = function() {
@@ -54,6 +56,7 @@ xgit = (function() {
    } }
 
  var loadGists = function(list) {
+   debugwr('Gist List: ' + list)
    window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
    set_gists(list)
    var modURL
@@ -70,11 +73,11 @@ xgit = (function() {
        break
      }
    }
-   console.log(modURL)
+   debugwr('modURL: ' + modURL)
    $.ajax({url: modURL, complete: ready }) }
    
  var ready = function(data) {
-   console.log(data)
+   debugwr('Gist retrieved: ' + data)
    var t = data.responseText
    try { eval(t) } catch(err) { console.log(err) } }
  
