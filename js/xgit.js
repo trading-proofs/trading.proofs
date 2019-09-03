@@ -62,7 +62,7 @@ xgit = (function() {
    var modURL
    for (var i = 0; i < list.length; i++) {
      var n = list[i]
-     var desc = n.description
+     var desc = n.description.toLowerCase()
      if (desc == anchor) {
        var o = n.files
        for (var k in o) {
