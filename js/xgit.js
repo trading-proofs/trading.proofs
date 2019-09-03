@@ -18,16 +18,17 @@ xgit = (function() {
      var c    = url.replace(/.*?\?code\=/,'')
      var uri  = 'https://cors-anywhere.herokuapp.com/'
          uri += 'https://github.com/login/oauth/access_token'
-         uri += '?client_id=' + client_id()
-         uri += '&client_secret=' + client_secret()
-         uri += '&code=' + c
+         uri += '?client_id=' + client_id() + '&'
+         uri += 'client_secret=' + client_secret() + '&'
+         uri += 'code=' + c
+     console.log(uri)
      $.ajax({
        type: 'POST',
        url : uri,
-       crossDomain: true,
-       xhrFields: { // https://stackoverflow.com/a/42554319
-         withCredentials: true
-       },
+       // crossDomain: true,
+       // xhrFields: { // https://stackoverflow.com/a/42554319
+         // withCredentials: true
+       // },
        success: receiveToken,
      })
    } }
