@@ -56,6 +56,7 @@ xgit = (function() {
    } }
 
  var loadGists = function(list) {
+   console.log(list)
    debugwr('Gist List: ' + list)
    window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
    set_gists(list)
