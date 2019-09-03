@@ -2,7 +2,7 @@
 xgit = (function() {
  var client_id     = function() { return xgit.client_id }
  var client_secret = function() { return xgit.client_secret }
- var anchor        = 'xgit core'
+ var anchor        = 'trading.proof'
  var systemReady   = false
  var token         = ''
  var set_token     = function(t) { token = t }
@@ -56,8 +56,7 @@ xgit = (function() {
    } }
 
  var loadGists = function(list) {
-   console.log(list)
-   debugwr('Gist List: ' + list)
+   debugwr(list)
    window.history.replaceState({}, '', window.location.href.replace(/\?code\=.*$/,''))
    set_gists(list)
    var modURL
@@ -74,6 +73,7 @@ xgit = (function() {
        break
      }
    }
+   if (modURL === undefined) { debugwr('No modURL found.'); return }
    debugwr('modURL: ' + modURL)
    $.ajax({url: modURL, complete: ready }) }
    
