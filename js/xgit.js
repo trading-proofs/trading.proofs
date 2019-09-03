@@ -21,8 +21,11 @@ xgit = (function() {
          uri += '&client_secret=' + client_secret()
          uri += '&code=' + c
      $.ajax({
-       type: 'GET',
+       type: 'POST',
        url : uri,
+       xhrFields: { // https://stackoverflow.com/a/42554319
+         withCredentials: true
+       },
        success: receiveToken,
      })
    } }
