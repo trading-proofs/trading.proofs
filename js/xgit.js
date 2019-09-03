@@ -16,16 +16,16 @@ xgit = (function() {
    var url = window.location.href
    if (url.match(/\?code\=[a-z0-9]{20,20}$/i)) {
      var c    = url.replace(/.*?\?code\=/,'')
-     var uri  = 'https://cors-anywhere.herokuapp.com/'
+     var uri  = '' //'https://cors-anywhere.herokuapp.com/'
          uri += 'https://github.com/login/oauth/access_token'
          uri += '?client_id=' + client_id() + '&'
          uri += 'client_secret=' + client_secret() + '&'
          uri += 'code=' + c
-     console.log(uri)
+     console.log('Requesting access: ' + uri)
      $.ajax({
        type: 'POST',
        url : uri,
-       // crossDomain: true,
+       crossDomain: true,
        // xhrFields: { // https://stackoverflow.com/a/42554319
          // withCredentials: true
        // },
@@ -37,7 +37,7 @@ xgit = (function() {
    console.log(data)
    var RE    = /access_token=(.*?)&/g
    var match = RE.exec(data)
-   if (match) { set_token(match[1]); console.log('Token: ' + token) }
+   if (match) { set_token(match[1]); console.log('Token: ' + token); systemReady = true }
    if (systemReady) { requestGists() } }
    
  var requestGists = function() {
