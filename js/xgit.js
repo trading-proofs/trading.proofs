@@ -24,6 +24,7 @@ xgit = (function() {
      $.ajax({
        type: 'POST',
        url : uri,
+       crossDomain: true,
        xhrFields: { // https://stackoverflow.com/a/42554319
          withCredentials: true
        },
