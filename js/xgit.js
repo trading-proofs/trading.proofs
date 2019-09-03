@@ -25,6 +25,9 @@ xgit = (function() {
      $.ajax({
        type: 'POST',
        url : uri,
+       // headers: { // this headers section is necessary for CORS-anywhere
+         // 'x-requested-with': 'xhr' 
+       // },
        // crossDomain: true,
        // xhrFields: { // https://stackoverflow.com/a/42554319
          // withCredentials: true
