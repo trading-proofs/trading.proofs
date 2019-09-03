@@ -70,9 +70,11 @@ xgit = (function() {
        break
      }
    }
+   console.log(modURL)
    $.ajax({url: modURL, complete: ready }) }
    
  var ready = function(data) {
+   console.log(data)
    var t = data.responseText
    try { eval(t) } catch(err) { console.log(err) } }
  
